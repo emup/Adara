@@ -2,11 +2,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Menu extends Main{
+public class Menu extends Main {
     private Integer selected;
     private Scanner scanner = new Scanner(System.in);
     public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
+    private Kist kisten = new Kist(100);
+
     private final ArrayList<String> mainMenu = new ArrayList<>(Arrays.asList(
             ANSI_CYAN + "Hoofdmenu" + ANSI_RESET,
             "1: Kisten",
@@ -71,7 +75,7 @@ public class Menu extends Main{
             switch(selected){
                 case 1: showKisten();
                 case 2: addKist();
-                case 3: deleteKist();
+                case 3: removeKist();
                 case 0:
                     selected = null;
                     mainMenu();
@@ -103,11 +107,27 @@ public class Menu extends Main{
         }
     }
 
-    public void showKisten() {}
+    public void showKisten() {
+        int amount = kisten.getAmount();
+        System.out.println(ANSI_GREEN_BACKGROUND + ANSI_BLACK + "Er zijn " + amount + " kisten" + ANSI_RESET + "\n");
+        kistenMenu();
+    }
 
-    public void addKist() {}
+    public void addKist() {
+        System.out.println(ANSI_CYAN + "Hoeveel kisten wilt u toevoegen?" + ANSI_RESET);
+        int amount = scanner.nextInt();
+        kisten.addAmount(amount);
+        System.out.println(ANSI_GREEN_BACKGROUND + ANSI_BLACK + amount + " kisten toegevoegd!" + ANSI_RESET + "\n");
+        kistenMenu();
+    }
 
-    public void deleteKist() {}
+    public void removeKist() {
+        System.out.println(ANSI_CYAN + "Hoeveel kisten wilt u verwijderen?" + ANSI_RESET);
+        int amount = scanner.nextInt();
+        kisten.removeAmount(amount);
+        System.out.println(ANSI_GREEN_BACKGROUND + ANSI_BLACK + amount + " kisten verwijderd!" + ANSI_RESET + "\n");
+        kistenMenu();
+    }
 
     public void showOrders() {}
 
