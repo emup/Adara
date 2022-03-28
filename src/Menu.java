@@ -3,13 +3,12 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Menu extends Main {
-    private Integer selected;
-    private Scanner scanner = new Scanner(System.in);
+    private Kist kisten = new Kist(100);
+    private final Scanner scanner = new Scanner(System.in);
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
-    private Kist kisten = new Kist(100);
 
     private final ArrayList<String> mainMenu = new ArrayList<>(Arrays.asList(
             ANSI_CYAN + "Hoofdmenu" + ANSI_RESET,
@@ -44,7 +43,6 @@ public class Menu extends Main {
 
     public void mainMenu(){
         while(checkSelected()) {
-
             for(String m : mainMenu) {
                 System.out.println(m);
             }
@@ -82,7 +80,6 @@ public class Menu extends Main {
                 default:
                     System.out.println("Ongeldige input! Voer een geldig input in: ");
             }
-
         }
     }
 
@@ -103,7 +100,6 @@ public class Menu extends Main {
                 default:
                     System.out.println("Ongeldige input! Voer een geldig input in: ");
             }
-
         }
     }
 
@@ -128,8 +124,6 @@ public class Menu extends Main {
         System.out.println(ANSI_GREEN_BACKGROUND + ANSI_BLACK + amount + " kisten verwijderd!" + ANSI_RESET + "\n");
         kistenMenu();
     }
-
-    public void showOrders() {}
 
     public void addOrder() {}
 }
