@@ -21,6 +21,10 @@ public class Order {
         return kistUsed;
     }
 
+    public void addKist(int amount) {
+        this.kistUsed += amount;
+    }
+
     @Override
     public String toString() {
         return "Ordernr: " + nr +

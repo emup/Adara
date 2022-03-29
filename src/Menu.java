@@ -24,8 +24,9 @@ public class Menu extends Main {
     private final ArrayList<String> orderMenu = new ArrayList<>(Arrays.asList(
             ANSI_CYAN + "Bestellingen:" + ANSI_RESET,
             "1: Voeg bestelling toe",
-            "2: Toon bestellingen",
-            "3: Toon volledig vervulde bestellingen",
+            "2: Voeg kisten toe aan bestelling",
+            "3: Toon bestellingen",
+            "4: Toon volledig vervulde bestellingen",
             "0: Terug\n"
     ));
 
@@ -95,8 +96,9 @@ public class Menu extends Main {
 
             switch(selected){
                 case 1: addOrder();
-                case 2: showOrders();
-                case 3: showOrdersFulfilled();
+                case 2: fulfillOrder();
+                case 3: showOrders();
+                case 4: showOrdersFulfilled();
                 case 0:
                     selected = null;
                     mainMenu();
@@ -162,6 +164,18 @@ public class Menu extends Main {
         orders.add(new Order(name, getCustomerFromId(customer, customers), kn, ku));
         System.out.println(ANSI_GREEN_BACKGROUND + ANSI_BLACK + "Order toegevoegd!" + ANSI_RESET + "\n");
         orderMenu();
+    }
+
+    public void fulfillOrder() {
+        System.out.println(ANSI_CYAN + "Order vervullen" + ANSI_RESET);
+        System.out.println("Ordernr: ");
+        scanner.nextLine();
+        int order = scanner.nextInt();
+        System.out.println("Hoeveel kisten wilt u toevoegen?: ");
+        int amount = scanner.nextInt();
+        orders.get(order).addKist(amount);
+        System.out.println(ANSI_GREEN_BACKGROUND + ANSI_BLACK + amount + "kisten toegevoegd aan order " +
+                order + ANSI_RESET + "\n");
     }
 
     public void showOrders() {
