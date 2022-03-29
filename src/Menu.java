@@ -159,7 +159,7 @@ public class Menu extends Main {
         int kn = scanner.nextInt();
         System.out.println("Hoeveel kisten al gevuld?: ");
         int ku = scanner.nextInt();
-        orders.add(new Order(name, getCustomerFromId(customer), kn, ku));
+        orders.add(new Order(name, getCustomerFromId(customer, customers), kn, ku));
         System.out.println(ANSI_GREEN_BACKGROUND + ANSI_BLACK + "Order toegevoegd!" + ANSI_RESET + "\n");
         orderMenu();
     }
