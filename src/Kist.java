@@ -9,10 +9,6 @@ public class Kist {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
-
     public void addAmount(Integer amount) {
         this.amount += amount;
     }

@@ -1,10 +1,7 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Main {
     protected Integer selected;
-    protected Scanner scanner = new Scanner(System.in);
     protected static ArrayList<Order> orders = new ArrayList<>();
     protected static ArrayList<Customer> customers = new ArrayList<>();
     protected static Kist kisten = new Kist(100);
