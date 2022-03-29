@@ -3,12 +3,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Menu extends Main {
-    private Kist kisten = new Kist(100);
     private final Scanner scanner = new Scanner(System.in);
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
 
     private final ArrayList<String> mainMenu = new ArrayList<>(Arrays.asList(
             ANSI_CYAN + "Hoofdmenu" + ANSI_RESET,
@@ -27,18 +22,15 @@ public class Menu extends Main {
 
     private final ArrayList<String> orderMenu = new ArrayList<>(Arrays.asList(
             ANSI_CYAN + "Bestellingen:" + ANSI_RESET,
-            "1: Toon bestellingen",
-            "2: Voeg bestelling toe",
+            "1: Voeg bestelling toe",
+            "2: Toon bestellingen",
+            "3: Toon volledig vervulde bestellingen",
             "0: Terug\n"
     ));
 
 
     public Menu(){
         mainMenu();
-    }
-
-    private Boolean checkSelected() {
-        return selected == null || selected != 0;
     }
 
     public void mainMenu(){
@@ -57,7 +49,7 @@ public class Menu extends Main {
                 case 0:
                     System.exit(0);
                 default:
-                    System.out.println("Voer een geldige keuze in: ");
+                    System.out.println("Ongeldige input! Voer een geldig input in: ");
             }
         }
     }
@@ -92,8 +84,9 @@ public class Menu extends Main {
             selected = scanner.nextInt();
 
             switch(selected){
-                case 1: showOrders();
-                case 2: addOrder();
+                case 1: addOrder();
+                case 2: showOrders();
+                case 3: showOrdersFulfilled();
                 case 0:
                     selected = null;
                     mainMenu();
@@ -125,5 +118,47 @@ public class Menu extends Main {
         kistenMenu();
     }
 
-    public void addOrder() {}
+    public void addOrder() {
+        System.out.println(ANSI_CYAN + "Order toevoegen" + ANSI_RESET);
+        System.out.println("Ordernaam: ");
+        scanner.nextLine();
+        String name = scanner.nextLine();
+        System.out.println("Klantnr: ");
+        int customer = scanner.nextInt();
+        System.out.println("Hoeveel kisten nodig?: ");
+        int kn = scanner.nextInt();
+        System.out.println("Hoeveel kisten al gevuld?: ");
+        int ku = scanner.nextInt();
+        orders.add(new Order(name, getCustomerFromId(customer), kn, ku));
+        System.out.println(ANSI_GREEN_BACKGROUND + ANSI_BLACK + "Order toegevoegd!" + ANSI_RESET + "\n");
+        orderMenu();
+    }
+
+    public void showOrders() {
+        if(checkSelected()) {
+            for (Order o : orders) {
+                System.out.println("- " + o);
+            }
+            System.out.println("0: Terug");
+            selected = scanner.nextInt();
+            if(selected == 0) {
+                mainMenu();
+            }
+        }
+    }
+
+    public void showOrdersFulfilled() {
+        while(checkSelected()) {
+            for (Order o : orders) {
+                if(o.getKistUsed() == o.getKistNeeded()) {
+                    System.out.println("- " + o);
+                }
+            }
+            System.out.println("0: Terug");
+            selected = scanner.nextInt();
+            if(selected == 0) {
+                mainMenu();
+            }
+        }
+    }
 }

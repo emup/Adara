@@ -7,6 +7,12 @@ public class Main {
     protected Scanner scanner = new Scanner(System.in);
     protected static ArrayList<Order> orders = new ArrayList<>();
     protected static ArrayList<Customer> customers = new ArrayList<>();
+    protected static Kist kisten = new Kist(100);
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
 
     public static void main(String[] args) {
         initializeCustomers();
@@ -14,29 +20,10 @@ public class Main {
         Menu menu = new Menu();
     }
 
-    private Boolean checkSelected() {
+    protected Boolean checkSelected() {
         return selected == null || selected != 0;
     }
 
-    public void showOrders() {
-        while(checkSelected()) {
-            for (Order o : orders) {
-                System.out.println("- " + o);
-            }
-            scanner.next();
-        }
-    }
-
-    public void showOrdersFulfilled() {
-        while(checkSelected()) {
-            for (Order o : orders) {
-                if(o.getKistUsed() == o.getKistNeeded()) {
-                    System.out.println("- " + o);
-                }
-            }
-            scanner.next();
-        }
-    }
 
     private static void initializeCustomers() {
         customers.add(new Customer("ECMA-Corp"));
