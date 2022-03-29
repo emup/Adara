@@ -9,6 +9,7 @@ public class Menu extends Main {
             ANSI_CYAN + "Hoofdmenu" + ANSI_RESET,
             "1: Kisten",
             "2: Bestellingen",
+            "3: Klanten",
             "0: Sluit programma\n"
     ));
 
@@ -25,6 +26,13 @@ public class Menu extends Main {
             "1: Voeg bestelling toe",
             "2: Toon bestellingen",
             "3: Toon volledig vervulde bestellingen",
+            "0: Terug\n"
+    ));
+
+    private final ArrayList<String> customerMenu = new ArrayList<>(Arrays.asList(
+            ANSI_CYAN + "Klanten:" + ANSI_RESET,
+            "1: Voeg klant toe",
+            "2: Toon klanten",
             "0: Terug\n"
     ));
 
@@ -46,6 +54,8 @@ public class Menu extends Main {
                     kistenMenu();
                 case 2:
                     orderMenu();
+                case 3:
+                    customerMenu();
                 case 0:
                     System.exit(0);
                 default:
@@ -87,6 +97,26 @@ public class Menu extends Main {
                 case 1: addOrder();
                 case 2: showOrders();
                 case 3: showOrdersFulfilled();
+                case 0:
+                    selected = null;
+                    mainMenu();
+                default:
+                    System.out.println("Ongeldige input! Voer een geldig input in: ");
+            }
+        }
+    }
+
+    public void customerMenu(){
+        while(checkSelected()) {
+            for(String c : customerMenu) {
+                System.out.println(c);
+            }
+
+            selected = scanner.nextInt();
+
+            switch(selected){
+                case 1: addCustomer();
+                case 2: showCustomers();
                 case 0:
                     selected = null;
                     mainMenu();
@@ -158,6 +188,29 @@ public class Menu extends Main {
             selected = scanner.nextInt();
             if(selected == 0) {
                 mainMenu();
+            }
+        }
+    }
+
+    public void addCustomer() {
+        System.out.println(ANSI_CYAN + "Klant toevoegen" + ANSI_RESET);
+        System.out.println("Naam: ");
+        scanner.nextLine();
+        String name = scanner.nextLine();
+        customers.add(new Customer(name));
+        System.out.println(ANSI_GREEN_BACKGROUND + ANSI_BLACK + "Klant toegevoegd!" + ANSI_RESET + "\n");
+        customerMenu();
+    }
+
+    public void showCustomers() {
+        if(checkSelected()) {
+            for (Customer c : customers) {
+                System.out.println("- " + c);
+            }
+            System.out.println("0: Terug");
+            selected = scanner.nextInt();
+            if(selected == 0) {
+                customerMenu();
             }
         }
     }
