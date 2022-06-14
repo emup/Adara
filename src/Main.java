@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Main {
@@ -6,11 +5,6 @@ public class Main {
     protected static ArrayList<Order> orders = new ArrayList<>();
     protected static ArrayList<Customer> customers = new ArrayList<>();
     protected static Kist kisten = new Kist(100);
-
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
 
     public static void main(String[] args) {
         initializeCustomers();

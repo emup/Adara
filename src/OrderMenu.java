@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 public class OrderMenu extends Menu {
     private static final ArrayList<String> orderMenu = new ArrayList<>(Arrays.asList(
-            Main.ANSI_CYAN + "Bestellingen:" + Main.ANSI_RESET,
+            Menu.ANSI_CYAN + "Bestellingen:" + Menu.ANSI_RESET,
             "1: Voeg bestelling toe",
             "2: Voeg kisten toe aan bestelling",
             "3: Toon bestellingen",

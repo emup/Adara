@@ -14,7 +14,7 @@ public class Order {
     }
 
     public static void addOrder() {
-        System.out.println(Main.ANSI_CYAN + "Order toevoegen" + Main.ANSI_RESET);
+        System.out.println(Menu.ANSI_CYAN + "Order toevoegen" + Menu.ANSI_RESET);
 
         Menu.scanner.nextLine();
         String name = askOrderName();
@@ -23,7 +23,7 @@ public class Order {
         int ku = askKistenGevuld();
 
         Main.orders.add(new Order(name, Main.getCustomerFromId(customer, Main.customers), kn, ku));
-        System.out.println(Main.ANSI_GREEN_BACKGROUND + Main.ANSI_BLACK + "Order toegevoegd!" + Main.ANSI_RESET + "\n");
+        System.out.println(Menu.ANSI_GREEN_BACKGROUND + Menu.ANSI_BLACK + "Order toegevoegd!" + Menu.ANSI_RESET + "\n");
         OrderMenu.showOrderMenu();
     }
 
@@ -49,7 +49,7 @@ public class Order {
 
 
     public static void fulfillOrder() {
-        System.out.println(Main.ANSI_CYAN + "Order vervullen" + Main.ANSI_RESET);
+        System.out.println(Menu.ANSI_CYAN + "Order vervullen" + Menu.ANSI_RESET);
         System.out.println("Ordernr: ");
         Menu.scanner.nextLine();
         int order = Menu.scanner.nextInt();
@@ -57,8 +57,8 @@ public class Order {
         int amount = Menu.scanner.nextInt();
         Main.kisten.removeAmount(amount);
         Main.orders.get(order).addKist(amount);
-        System.out.println(Main.ANSI_GREEN_BACKGROUND + Main.ANSI_BLACK + amount + "kisten toegevoegd aan order " +
-                order + Main.ANSI_RESET + "\n");
+        System.out.println(Menu.ANSI_GREEN_BACKGROUND + Menu.ANSI_BLACK + amount + "kisten toegevoegd aan order " +
+                order + Menu.ANSI_RESET + "\n");
     }
 
     public static void showOrders() {

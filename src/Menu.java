@@ -3,6 +3,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Menu extends Main {
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_RESET = "\u001B[0m";
+
     protected static final Scanner scanner = new Scanner(System.in);
 
     private static final ArrayList<String> mainMenu = new ArrayList<>(Arrays.asList(
