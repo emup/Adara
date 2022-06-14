@@ -15,19 +15,38 @@ public class Order {
 
     public static void addOrder() {
         System.out.println(Main.ANSI_CYAN + "Order toevoegen" + Main.ANSI_RESET);
-        System.out.println("Ordernaam: ");
+
         Menu.scanner.nextLine();
-        String name = Menu.scanner.nextLine();
-        System.out.println("Klantnr: ");
-        int customer = Menu.scanner.nextInt();
-        System.out.println("Hoeveel kisten nodig?: ");
-        int kn = Menu.scanner.nextInt();
-        System.out.println("Hoeveel kisten al gevuld?: ");
-        int ku = Menu.scanner.nextInt();
+        String name = askOrderName();
+        int customer = askKlantNr();
+        int kn = askKistenNodig();
+        int ku = askKistenGevuld();
+
         Main.orders.add(new Order(name, Main.getCustomerFromId(customer, Main.customers), kn, ku));
         System.out.println(Main.ANSI_GREEN_BACKGROUND + Main.ANSI_BLACK + "Order toegevoegd!" + Main.ANSI_RESET + "\n");
         OrderMenu.showOrderMenu();
     }
+
+    static String askOrderName() {
+        System.out.println("Ordernaam: ");
+        return Menu.scanner.nextLine();
+    }
+
+    static Integer askKlantNr() {
+        System.out.println("Klantnr: ");
+        return Menu.scanner.nextInt();
+    }
+
+    static Integer askKistenNodig() {
+        System.out.println("Hoeveel kisten nodig?: ");
+        return Menu.scanner.nextInt();
+    }
+
+    static Integer askKistenGevuld() {
+        System.out.println("Hoeveel kisten al gevuld?: ");
+        return Menu.scanner.nextInt();
+    }
+
 
     public static void fulfillOrder() {
         System.out.println(Main.ANSI_CYAN + "Order vervullen" + Main.ANSI_RESET);
