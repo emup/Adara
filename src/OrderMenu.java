@@ -17,9 +17,7 @@ public class OrderMenu extends Menu {
                 System.out.println(o);
             }
 
-            selected = scanner.nextInt();
-
-            switch(selected){
+            switch(scanSelectedInt()){
                 case 1: Order.addOrder();
                 case 2: Order.fulfillOrder();
                 case 3: Order.showOrders();

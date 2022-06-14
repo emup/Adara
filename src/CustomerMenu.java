@@ -15,9 +15,7 @@ public class CustomerMenu extends Menu {
                 System.out.println(c);
             }
 
-            selected = scanner.nextInt();
-
-            switch(selected){
+            switch(scanSelectedInt()){
                 case 1: Customer.addCustomer();
                 case 2: Customer.showCustomers();
                 case 0:

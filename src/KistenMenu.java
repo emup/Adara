@@ -16,9 +16,7 @@ public class KistenMenu extends Menu{
                 System.out.println(k);
             }
 
-            selected = scanner.nextInt();
-
-            switch(selected){
+            switch(scanSelectedInt()){
                 case 1: Kist.showKisten();
                 case 2: Kist.addKist();
                 case 3: Kist.removeKist();

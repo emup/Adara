@@ -23,9 +23,7 @@ public class Menu extends Main {
                 System.out.println(m);
             }
 
-            selected = scanner.nextInt();
-
-            switch (selected) {
+            switch (scanSelectedInt()) {
                 case 1:
                     KistenMenu.showKistenMenu();
                 case 2:
@@ -42,5 +40,10 @@ public class Menu extends Main {
 
     protected static void showInvalidInputMessage() {
         System.out.println("Ongeldige input! Voer een geldig input in: ");
+    }
+
+    protected static Integer scanSelectedInt() {
+        selected = scanner.nextInt();
+        return selected;
     }
 }
