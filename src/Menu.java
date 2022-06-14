@@ -35,20 +35,12 @@ public class Menu extends Main {
                 case 0:
                     System.exit(0);
                 default:
-                    System.out.println("Ongeldige input! Voer een geldig input in: ");
+                    showInvalidInputMessage();
             }
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
+    protected static void showInvalidInputMessage() {
+        System.out.println("Ongeldige input! Voer een geldig input in: ");
+    }
 }

@@ -24,9 +24,8 @@ public class CustomerMenu extends Menu {
                     selected = null;
                     mainMenu();
                 default:
-                    System.out.println("Ongeldige input! Voer een geldig input in: ");
+                    showInvalidInputMessage();
             }
         }
     }
-
 }
