@@ -2,7 +2,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Main {
-    protected Integer selected;
+    protected static Integer selected;
     protected static ArrayList<Order> orders = new ArrayList<>();
     protected static ArrayList<Customer> customers = new ArrayList<>();
     protected static Kist kisten = new Kist(100);
@@ -18,7 +18,7 @@ public class Main {
         Menu menu = new Menu();
     }
 
-    protected Boolean checkSelected() {
+    protected static Boolean checkSelected() {
         return selected == null || selected != 0;
     }
 
