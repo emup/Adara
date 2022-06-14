@@ -46,4 +46,12 @@ public class Menu extends Main {
         selected = scanner.nextInt();
         return selected;
     }
+
+    static void sendBackToMenuOption() {
+        System.out.println("0: Terug");
+        selected = Menu.scanner.nextInt();
+        if(Main.selected == 0) {
+            Menu.mainMenu();
+        }
+    }
 }

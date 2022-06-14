@@ -47,11 +47,7 @@ public class Order {
             for (Order o : Main.orders) {
                 System.out.println("- " + o);
             }
-            System.out.println("0: Terug");
-            Main.selected = Menu.scanner.nextInt();
-            if(Main.selected == 0) {
-                Menu.mainMenu();
-            }
+            Menu.sendBackToMenuOption();
         }
     }
 
@@ -62,11 +58,7 @@ public class Order {
                     System.out.println("- " + o);
                 }
             }
-            System.out.println("0: Terug");
-            Main.selected = Menu.scanner.nextInt();
-            if(Main.selected == 0) {
-                Menu.mainMenu();
-            }
+            Menu.sendBackToMenuOption();
         }
     }
 

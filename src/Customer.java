@@ -22,11 +22,7 @@ public class Customer {
             for (Customer c : Main.customers) {
                 System.out.println("- " + c);
             }
-            System.out.println("0: Terug");
-            Main.selected = Menu.scanner.nextInt();
-            if(Main.selected == 0) {
-                CustomerMenu.showCustomerMenu();
-            }
+            Menu.sendBackToMenuOption();
         }
     }
 
