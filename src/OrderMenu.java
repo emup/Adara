@@ -19,7 +19,9 @@ public class OrderMenu extends Menu {
 
             switch(scanSelectedInt()){
                 case 1: Order.addOrder();
-                case 2: Order.fulfillOrder();
+                case 2:
+                    Vervullen oudeOrder = new OudVervullen();
+                    oudeOrder.vervulproces();
                 case 3: Order.showOrders();
                 case 4: Order.showOrdersFulfilled();
                 case 0:

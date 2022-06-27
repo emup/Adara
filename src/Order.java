@@ -20,10 +20,10 @@ public class Order {
         String name = askOrderName();
         int customer = askKlantNr();
         int kn = askKistenNodig();
-        int ku = askKistenGevuld();
 
-        Main.orders.add(new Order(name, Main.getCustomerFromId(customer, Main.customers), kn, ku));
-        System.out.println(Menu.ANSI_GREEN_BACKGROUND + Menu.ANSI_BLACK + "Order toegevoegd!" + Menu.ANSI_RESET + "\n");
+        Vervullen nieuweOrder = new NieuwVervullen();
+        nieuweOrder.vervulproces(name, customer, kn);
+
         OrderMenu.showOrderMenu();
     }
 
