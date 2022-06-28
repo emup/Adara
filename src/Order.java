@@ -42,25 +42,6 @@ public class Order {
         return Menu.scanner.nextInt();
     }
 
-    static Integer askKistenGevuld() {
-        System.out.println("Hoeveel kisten al gevuld?: ");
-        return Menu.scanner.nextInt();
-    }
-
-
-    public static void fulfillOrder() {
-        System.out.println(Menu.ANSI_CYAN + "Order vervullen" + Menu.ANSI_RESET);
-        System.out.println("Ordernr: ");
-        Menu.scanner.nextLine();
-        int order = Menu.scanner.nextInt();
-        System.out.println("Hoeveel kisten wilt u toevoegen?: ");
-        int amount = Menu.scanner.nextInt();
-        Main.kisten.removeAmount(amount);
-        OnvervuldeOrders.orders.get(order).addKist(amount);
-        System.out.println(Menu.ANSI_GREEN_BACKGROUND + Menu.ANSI_BLACK + amount + "kisten toegevoegd aan order " +
-                order + Menu.ANSI_RESET + "\n");
-    }
-
     public static void showOrders() {
         if(Main.checkSelected()) {
             for (Order o : OnvervuldeOrders.orders) {
