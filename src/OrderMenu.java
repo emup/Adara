@@ -6,7 +6,7 @@ public class OrderMenu extends Menu {
             Menu.ANSI_CYAN + "Bestellingen:" + Menu.ANSI_RESET,
             "1: Voeg bestelling toe",
             "2: Voeg kisten toe aan bestelling",
-            "3: Toon bestellingen",
+            "3: Toon onvervulde bestellingen",
             "4: Toon volledig vervulde bestellingen",
             "0: Terug\n"
     ));

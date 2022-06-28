@@ -1,4 +1,4 @@
-public class OudVervullen extends Vervullen {
+public class OudVervullen extends Vervullen { // Template Method Pattern
     int order;
     int amount;
 
@@ -15,7 +15,13 @@ public class OudVervullen extends Vervullen {
     @Override
     void updaten(Object... args) {
         Main.kisten.removeAmount(amount);
-        Main.orders.get(order).addKist(amount);
+        OnvervuldeOrders.orders.get(order).addKist(amount);
+
+        if(OnvervuldeOrders.orders.get(order).getKistUsed() == OnvervuldeOrders.orders.get(order).getKistNeeded()) {
+            VervulManager vman = new VervulManager();
+            vman.setLuisteraars();
+            vman.setVervulUpdate(OnvervuldeOrders.orders.get(order)); // call observer
+        }
     }
 
     @Override

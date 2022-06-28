@@ -56,14 +56,14 @@ public class Order {
         System.out.println("Hoeveel kisten wilt u toevoegen?: ");
         int amount = Menu.scanner.nextInt();
         Main.kisten.removeAmount(amount);
-        Main.orders.get(order).addKist(amount);
+        OnvervuldeOrders.orders.get(order).addKist(amount);
         System.out.println(Menu.ANSI_GREEN_BACKGROUND + Menu.ANSI_BLACK + amount + "kisten toegevoegd aan order " +
                 order + Menu.ANSI_RESET + "\n");
     }
 
     public static void showOrders() {
         if(Main.checkSelected()) {
-            for (Order o : Main.orders) {
+            for (Order o : OnvervuldeOrders.orders) {
                 System.out.println("- " + o);
             }
             Menu.sendBackToMenuOption();
@@ -72,10 +72,8 @@ public class Order {
 
     public static void showOrdersFulfilled() {
         while(Main.checkSelected()) {
-            for (Order o : Main.orders) {
-                if(o.getKistUsed() == o.getKistNeeded()) {
-                    System.out.println("- " + o);
-                }
+            for (Order o : VervuldeOrders.ordersVervuld) {
+                System.out.println("- " + o);
             }
             Menu.sendBackToMenuOption();
         }

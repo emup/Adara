@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Main {
     protected static Integer selected;
-    protected static ArrayList<Order> orders = new ArrayList<>();
     protected static ArrayList<Customer> customers = new ArrayList<>();
     protected static Kist kisten = new Kist(100);
 
@@ -24,10 +23,10 @@ public class Main {
     }
 
     private static void initializeOrders() {
-        orders.add(new Order("Oranje tulpen voor touristen", getCustomerFromId(1, customers), 40, 0));
-        orders.add(new Order("Lading rozen voor trouwfeest", getCustomerFromId(0, customers), 60, 20));
-        orders.add(new Order("Hyacinten met spoed", getCustomerFromId(2, customers), 60, 60));
-        orders.add(new Order("Rozen voor valentijnsdag", getCustomerFromId(1, customers), 20, 20));
+        OnvervuldeOrders.orders.add(new Order("Oranje tulpen voor touristen", getCustomerFromId(1, customers), 40, 0));
+        OnvervuldeOrders.orders.add(new Order("Lading rozen voor trouwfeest", getCustomerFromId(0, customers), 60, 20));
+        VervuldeOrders.ordersVervuld.add(new Order("Hyacinten met spoed", getCustomerFromId(2, customers), 60, 60));
+        VervuldeOrders.ordersVervuld.add(new Order("Rozen voor valentijnsdag", getCustomerFromId(1, customers), 20, 20));
     }
 
     public static Customer getCustomerFromId(int id, ArrayList<Customer> c) {
