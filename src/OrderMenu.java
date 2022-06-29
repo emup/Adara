@@ -3,10 +3,10 @@ import java.util.Arrays;
 
 public class OrderMenu extends Menu {
     private static final ArrayList<String> orderMenu = new ArrayList<>(Arrays.asList(
-            Main.ANSI_CYAN + "Bestellingen:" + Main.ANSI_RESET,
+            Menu.ANSI_CYAN + "Bestellingen:" + Menu.ANSI_RESET,
             "1: Voeg bestelling toe",
             "2: Voeg kisten toe aan bestelling",
-            "3: Toon bestellingen",
+            "3: Toon onvervulde bestellingen",
             "4: Toon volledig vervulde bestellingen",
             "0: Terug\n"
     ));
@@ -17,11 +17,11 @@ public class OrderMenu extends Menu {
                 System.out.println(o);
             }
 
-            selected = scanner.nextInt();
-
-            switch(selected){
+            switch(scanSelectedInt()){
                 case 1: Order.addOrder();
-                case 2: Order.fulfillOrder();
+                case 2:
+                    Vervullen oudeOrder = new OudVervullen();
+                    oudeOrder.vervulproces();
                 case 3: Order.showOrders();
                 case 4: Order.showOrdersFulfilled();
                 case 0:

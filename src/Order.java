@@ -14,59 +14,49 @@ public class Order {
     }
 
     public static void addOrder() {
-        System.out.println(Main.ANSI_CYAN + "Order toevoegen" + Main.ANSI_RESET);
-        System.out.println("Ordernaam: ");
+        System.out.println(Menu.ANSI_CYAN + "Order toevoegen" + Menu.ANSI_RESET);
+
         Menu.scanner.nextLine();
-        String name = Menu.scanner.nextLine();
-        System.out.println("Klantnr: ");
-        int customer = Menu.scanner.nextInt();
-        System.out.println("Hoeveel kisten nodig?: ");
-        int kn = Menu.scanner.nextInt();
-        System.out.println("Hoeveel kisten al gevuld?: ");
-        int ku = Menu.scanner.nextInt();
-        Main.orders.add(new Order(name, Main.getCustomerFromId(customer, Main.customers), kn, ku));
-        System.out.println(Main.ANSI_GREEN_BACKGROUND + Main.ANSI_BLACK + "Order toegevoegd!" + Main.ANSI_RESET + "\n");
+        String name = askOrderName();
+        int customer = askKlantNr();
+        int kn = askKistenNodig();
+
+        Vervullen nieuweOrder = new NieuwVervullen();
+        nieuweOrder.vervulproces(name, customer, kn);
+
         OrderMenu.showOrderMenu();
     }
 
-    public static void fulfillOrder() {
-        System.out.println(Main.ANSI_CYAN + "Order vervullen" + Main.ANSI_RESET);
-        System.out.println("Ordernr: ");
-        Menu.scanner.nextLine();
-        int order = Menu.scanner.nextInt();
-        System.out.println("Hoeveel kisten wilt u toevoegen?: ");
-        int amount = Menu.scanner.nextInt();
-        Main.kisten.removeAmount(amount);
-        Main.orders.get(order).addKist(amount);
-        System.out.println(Main.ANSI_GREEN_BACKGROUND + Main.ANSI_BLACK + amount + "kisten toegevoegd aan order " +
-                order + Main.ANSI_RESET + "\n");
+    static String askOrderName() {
+        System.out.println("Ordernaam: ");
+        return Menu.scanner.nextLine();
+    }
+
+    static Integer askKlantNr() {
+        System.out.println("Klantnr: ");
+        return Menu.scanner.nextInt();
+    }
+
+    static Integer askKistenNodig() {
+        System.out.println("Hoeveel kisten nodig?: ");
+        return Menu.scanner.nextInt();
     }
 
     public static void showOrders() {
         if(Main.checkSelected()) {
-            for (Order o : Main.orders) {
+            for (Order o : OnvervuldeOrders.orders) {
                 System.out.println("- " + o);
             }
-            System.out.println("0: Terug");
-            Main.selected = Menu.scanner.nextInt();
-            if(Main.selected == 0) {
-                Menu.mainMenu();
-            }
+            Menu.sendBackToMenuOption();
         }
     }
 
     public static void showOrdersFulfilled() {
         while(Main.checkSelected()) {
-            for (Order o : Main.orders) {
-                if(o.getKistUsed() == o.getKistNeeded()) {
-                    System.out.println("- " + o);
-                }
+            for (Order o : VervuldeOrders.ordersVervuld) {
+                System.out.println("- " + o);
             }
-            System.out.println("0: Terug");
-            Main.selected = Menu.scanner.nextInt();
-            if(Main.selected == 0) {
-                Menu.mainMenu();
-            }
+            Menu.sendBackToMenuOption();
         }
     }
 
